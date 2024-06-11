@@ -3,6 +3,9 @@ import os
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
 from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -68,6 +71,26 @@ def extract_info():
     print(response.choices[0].message.function_call.arguments)
     
     return json.loads(response.choices[0].message.function_call.arguments)
+
+
+@app.route('/conversation', methods=['POST'])
+@cross_origin()
+def conversation():
+    data = request.json
+    print("on a reçu ça:")  # Obtient les données de la requête POST
+    print( data.get('description', ''))
+    messages = [{'role': 'user', 'content': data.get('description', '')}]
+    
+    response = client.chat.completions.create(
+        model='gpt-3.5-turbo',
+        messages=messages,
+    )
+
+
+    print("On est passé on envoie ça :")
+    print(response.choices[0].message.content)
+    message_content = response.choices[0].message.content
+    return  jsonify({"response": message_content})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)  # Lancer l'application Flask
