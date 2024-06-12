@@ -71,7 +71,7 @@ travel_custom_functions = [
     },
     {
         "name":"askCommercial",
-        "description":"Detecte lorsque l'utilisteur demande à parler à un commercial. Où quand l'utilsateur veut parler à un humain"
+        "description":"Detecte lorsque l'utilisteur demande à échanger avec nos équipes. Ou quand l'utilsateur veut parler à un humain. Ou quand l'utilisateur veut nous téléphoner"
     },
 ]
 
