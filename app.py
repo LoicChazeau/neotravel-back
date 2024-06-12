@@ -4,12 +4,28 @@ from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
 from openai import OpenAI
 from dotenv import load_dotenv
+from pyairtable import Api
 
 load_dotenv()
 
 app = Flask(__name__)
+
 cors = CORS(app)
+
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+client = OpenAI(
+    api_key=os.environ['OPENAI_API_KEY'],
+)
+
+airTableToken = os.environ['AIRTABLE_API_KEY']
+app_id = os.environ['AIRTABLE_APP_ID']
+table_id = os.environ['AIRTABLE_TABLE_ID']
+
+airtable = Api(airTableToken)
+table = airtable.table(app_id, table_id)
+
+# rows = table.all()
 
 travel_custom_functions = [
     # {
@@ -59,9 +75,6 @@ travel_custom_functions = [
     },
 ]
 
-client = OpenAI(
-    api_key=os.environ['OPENAI_API_KEY'],
-)
 
 @app.route('/conversation', methods=['POST'])
 @cross_origin()
@@ -79,16 +92,17 @@ def conversation():
         functions=travel_custom_functions,
         function_call='auto'
     )
-    print(description)
-
+    print("Demande :")
+    print(data.get('description', ''))
+    print("Réponse :")
     if response.choices[0].message.function_call==None:
-        print("conversation")
+        print("Conversation")
         toReturn = {
             "type":"conversation",
             "response":response.choices[0].message.content
         }
     else:
-        print("function")
+        print("Function")
         toReturn = {
             "type":"functionCall",
             "functionName":response.choices[0].message.function_call.name
@@ -98,37 +112,13 @@ def conversation():
     return jsonify(toReturn)
 
 @app.route('/sendDevis', methods=['POST'])
+
 @cross_origin()
+
 def sendDevis():
     data = request.json
-    # Obtient les données de la requête POST
-    messages = [
-        {'role': 'system', 'content': 'Vous êtes un assistant qui répond uniquement en français.'},
-        {'role': 'user', 'content': data.get('description', '')}
-    ]
-    
-    response = client.chat.completions.create(
-        model='gpt-3.5-turbo',
-        messages=messages,
-        functions=travel_custom_functions,
-        function_call='auto'
-    )
-    print(response.choices[0].message.function_call)
-    print(response.choices[0].message.function_call==None)
-    if response.choices[0].message.function_call==None:
-        print("conversation")
-        toReturn = {
-            "type":"conversation",
-            "response":response.choices[0].message.content
-        }
-    else:
-        print("function")
-        toReturn = {
-            "type":"functionCall",
-            "functionName":response.choices[0].message.function_call.name
-        }
-    print(toReturn)
-
+    record = table.create(data)
+    toReturn = { 'success': True, 'id': record["id"] }
     return jsonify(toReturn)
 
 if __name__ == '__main__':
