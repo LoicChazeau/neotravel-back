@@ -112,13 +112,18 @@ def conversation():
     return jsonify(toReturn)
 
 @app.route('/sendDevis', methods=['POST'])
-
 @cross_origin()
-
 def sendDevis():
     data = request.json
     record = table.create(data)
     toReturn = { 'success': True, 'id': record["id"] }
+    return jsonify(toReturn)
+
+
+@app.route('/test', methods=['GET'])
+@cross_origin()
+def test():
+    toReturn = { 'success': "success"}
     return jsonify(toReturn)
 
 if __name__ == '__main__':
