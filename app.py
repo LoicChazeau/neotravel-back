@@ -193,23 +193,9 @@ def sendDevis():
     # response = requests.request("GET", urlWebhook)
     # print("WebHook :")
     # print(response.text)
-    i = 0
 
-    if "ID" in record['fields']:
-        while i < 20:
-            print("ON A SLEEP MDR")
-            time.sleep(1)
-            i += 1
-            record = table.get(record_id=record["id"])
-            if "Quote_pdf" in record['fields']:
-                break
-        
-        if "Quote_pdf" not in record['fields']:
-            print("ON pas A LE PDF MDR LOLILOL")
-            toReturn = { 'success': False, 'id': record["id"], "pdf_url": None }
-            return jsonify(toReturn)
 
-    toReturn = { 'success': True, 'id': record["id"], "pdf_url": record['fields']['Quote_pdf'][0]['url']}
+    toReturn = {'success': True, 'id': record["id"]}
     print(toReturn)
     return jsonify(toReturn)
 
@@ -224,12 +210,37 @@ def sendFeedback():
 
     return jsonify({"sucess":"sucess"})
 
+@app.route('/getPdf', methods=['GET'])
+@cross_origin()
+def getPdf():
+    id = request.args.get('id')
+    print(id)
+    record = table.get(record_id=id)
+    i = 0
+
+    if "ID" in record['fields']:
+        while i < 7:
+            print("ON A SLEEP MDR")
+            i += 1
+            record = table.get(record_id=record["id"])
+            if "Quote_pdf" in record['fields']:
+                break
+            time.sleep(1)
+        
+        if "Quote_pdf" not in record['fields']:
+            print("ON pas A LE PDF MDR LOLILOL")
+            toReturn = { 'success': False, 'id': record["id"], "pdf_url": None }
+            return jsonify(toReturn)
+    toReturn = { 'success': True, 'id': record["id"], "pdf_url": record['fields']['Quote_pdf'][0]['url']}
+    print(toReturn)
+    return jsonify(toReturn)
 
 @app.route('/test', methods=['GET'])
 @cross_origin()
 def test():
     toReturn = { 'success': "success"}
     return jsonify(toReturn)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)  # Lancer l'application Flask
