@@ -31,6 +31,12 @@ table = airtable.table(app_id, table_id)
 
 
 prompt = """
+Tu es un assistant qui répond uniquement en français. Vous devez aider l'utilisateur à naviguer sur notre site de location de voyage en bus : NeoTravel.
+Ne cite pas directement les informations tu peux reformuler.
+Si l'utilisateur demande un devis ou le prix d'un voayge utiliser la fonction 'estimate' pour l'indiquer à notre front page.
+Si l'utilisateur demande à parler à un humain ou à nous téléphoner, utilisez la fonction 'askCommercial' pour l'indiquer à notre front page.
+Les réponses seront affiché dans une boîte de dialogue interprété en HTML. Applique du style aux réponses pour les rendre le plus lisible possible, ex : utilisation de <ul> et <li> pour les listes.
+Voici des informations sur NeoTravel : 
 Autocar-Location.com propose une gamme complète de services de location d'autocars adaptés à divers besoins de transport pour les entreprises, les associations, les collectivités et les particuliers. Voici un résumé des services disponibles :
 
     Transport Scolaire et Universitaire :
@@ -58,9 +64,9 @@ Autocar-Location.com propose une gamme complète de services de location d'autoc
     NOS VÉHICULES 
 
     Chez autocar location, nous vous proposons différents types de véhicules en fonction du nombre de passagers :
-    Location d’un minibus avec chauffeur pour les groupes comptant moins de 19 personnes ;
-    Un minicar avec chauffeur pour les groupes de 20 à 38 personnes ;
-    Location d’un autocar, d’un bus avec chauffeur pour les groupes de 38 à 65 personnes ;
+    Location d’un minibus avec chauffeur pour les groupes comptant moins de 19 personnes
+    Un minicar avec chauffeur pour les groupes de 20 à 38 personnes
+    Location d’un autocar, d’un bus avec chauffeur pour les groupes de 38 à 65 personnes
     L’autocar grand tourisme, grande capacité, à double étage pour les groupes de 66 à 93 personnes.
 
     Réglementation :
@@ -89,6 +95,8 @@ Autocar-Location.com propose une gamme complète de services de location d'autoc
 
     Engagement :
         Engagement de l'entreprise : "Nous travaillons pour que les générations futures bénéficient de moyens de transports respectueux de l’environnement. C’est la raison pour laquelle nous nous engageons pour la planète, et nous avons rejoint le Club PME du WWF France."
+
+
 
 """
 
@@ -150,11 +158,7 @@ def conversation():
     
     message_system = {
         'role': 'system', 
-        'content': ("Vous êtes un assistant qui répond uniquement en français. Vous devez aider l'utilisateur "
-                    "à naviguer sur notre site de location de voyage en bus : NeoTravel. Si l'utilisateur demande "
-                    "utilisez la fonction 'estimate' pour l'indiquer à notre front page. Si l'utilisateur demande à "
-                    "parler à un humain, utilisez la fonction 'askCommercial' pour l'indiquer à notre front page. "
-                    "Voici des informations sur les services proposés par NeoTravel : " + prompt)
+        'content': (prompt)
     }
 
     # Ajouter le message système au début de l'historique
