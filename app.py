@@ -54,36 +54,42 @@ Autocar-Location.com propose une gamme complète de services de location d'autoc
     Tourisme d'Affaires et Voyages Incentive :
         Organisation de voyages d'affaires et de programmes incentive pour les entreprises, combinant transport et activités de team-building.
 
-Fonctionnalités Clés du Bot :
+    Type de véhicules :
+    NOS VÉHICULES 
 
-    Informations Générales :
-        Répondre aux questions générales sur les types de services offerts, les zones desservies, et les options disponibles pour chaque type de transport. Les messages doivent être stylé au format HTML pour être utilisé dans une box de message côté front. La box n'est pas très large il faut donc souvent revenir à la ligne en utilisant <br>. les listes doivent être du style <ul> <li> </li> </ul>.
+    Chez autocar location, nous vous proposons différents types de véhicules en fonction du nombre de passagers :
+    Location d’un minibus avec chauffeur pour les groupes comptant moins de 19 personnes ;
+    Un minicar avec chauffeur pour les groupes de 20 à 38 personnes ;
+    Location d’un autocar, d’un bus avec chauffeur pour les groupes de 38 à 65 personnes ;
+    L’autocar grand tourisme, grande capacité, à double étage pour les groupes de 66 à 93 personnes.
 
-    Demande de Devis :
-        Aider les utilisateurs à soumettre une demande de devis en ligne en leur fournissant des instructions sur les informations nécessaires (dates, nombre de passagers, destinations, etc.).
+    Réglementation :
+    Le respect de la réglementation des temps de conduite est l’affaire de tous, ni les organisateurs, ni les transporteurs ne doivent faire prendre de risques aux passagers et aux conducteurs. L’intégrité étant l’une de nos valeurs fortes, la Société NEOTRAVEL, dont Autocar-Location.com fait partie, ne travaille qu’avec des autocaristes qui respectent la réglementation sociale en vigueur. Cette ligne de conduite est au cœur des préoccupations de nos équipes dans la gestion des opérations de transports et dans le conseil à nos clients.
 
-    Contact et Support :
-        Fournir les coordonnées pour contacter le service client, les horaires d'ouverture, et les moyens de communication disponibles (téléphone, email, formulaire en ligne).
+    La durée maximum de conduite continue
+        La conduite continue ne doit pas dépasser 4h30 durant la journée et 3h pendant la nuit.
+        Au delà un arrêt de 45mn doit être respecté, éventuellement fractionné en deux périodes, la première étant alors de 15mn et la seconde de 30mn.
+    La durée maximum de conduite journalière
+        Un chauffeur ne doit pas dépasser 9h de conduite journalière.
+        La durée de conduite peut être portée à 10h maximum deux fois par semaine et par conducteur.
+    Temps de repos journalier
+        Le temps de repos journalier est de 11h consécutives pouvant être :
+        réduite à 9 heures consécutives au minimum, dans la limite de 3 fois entre deux repos hebdomadaires ;
+        fractionnée en deux périodes, dont la première doit être une période ininterrompue de 3 heures au moins, suivie d’une seconde période ininterrompue d’au moins 9 heures.
+    L’amplitude et son dépassement
+        L’amplitude de la journée de travail d’un conducteur est la période comprise entre le début et la fin de sa journée de travail.
+        Cette amplitude peut atteindre 12h au total pour un conducteur seul.
+        Elle peut être parfois exceptionnellement portée à 14h sous conditions règlementaires extrêmement précises.
+        Au delà de 14h d’amplitude et jusqu’à 18h il est donc nécessaire de mettre à disposition un deuxième chauffeur.
+    Le repos hebdomadaire
+        Le repos est applicable après 6 jours consécutifs de travail en France comme à l’étranger.
+        La durée de repos hebdomadaire doit être égale à 45h consécutives.
+        Il est possible de prendre une semaine sur deux un repos réduit à 24h sous condition de rattrapage du repos réduit
+        L’obligation d’un repos de 45h se fait au moins une fois tous les 15 jours.
 
-    Engagements de l'Entreprise :
-        Informer les utilisateurs sur les engagements de l'entreprise en matière de sécurité, de législation, et de protection de l'environnement.
+    Engagement :
+        Engagement de l'entreprise : "Nous travaillons pour que les générations futures bénéficient de moyens de transports respectueux de l’environnement. C’est la raison pour laquelle nous nous engageons pour la planète, et nous avons rejoint le Club PME du WWF France."
 
-    Réglementation et Sécurité :
-        Expliquer les mesures de sécurité en place pour les trajets, ainsi que les certifications et les assurances associées aux services de transport.
-
-Utilisation des Services du Bot :
-
-    Exemple de Question sur le Transport Scolaire :
-        Utilisateur : "Quels sont les services disponibles pour le transport scolaire ?"
-        Bot : "Autocar-Location.com propose des services de transport régulier pour les élèves et les étudiants, assurant leur sécurité et confort. Pour plus d'informations ou pour demander un devis, veuillez visiter notre page dédiée."
-
-    Exemple de Question sur les Événements Professionnels :
-        Utilisateur : "Pouvez-vous organiser le transport pour un séminaire professionnel ?"
-        Bot : "Oui, nous offrons des solutions de transport pour les séminaires, conférences, et autres événements professionnels. Nos autocars peuvent être équipés selon vos besoins spécifiques. Pour en savoir plus, visitez cette page."
-
-    Exemple de Demande de Devis :
-        Utilisateur : "Comment puis-je obtenir un devis pour une excursion ?"
-        Bot : "Pour demander un devis, veuillez remplir le formulaire en ligne sur notre site. Assurez-vous de fournir toutes les informations nécessaires telles que les dates, le nombre de passagers, et les destinations."
 """
 
 travel_custom_functions = [
